@@ -1,0 +1,8 @@
+  <mat-form-field style="width: 100%;">
+    <input type="text" matInput [(ngModel)]="inputLabel" [placeholder]="placeholder" [formControl]="list" [matAutocomplete]="auto"/>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of shownItems" [value]="item">{{ item }}</mat-option>
+      </mat-autocomplete>
+  </mat-form-field>
+
+

@@ -1,0 +1,51 @@
+<form [formGroup]="simulationForm">
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <b>{{title}}</b>
+    </div>
+    <div class="panel-body">
+   <!--    <ul class="nav nav-pills">
+        <li class="active"><a href="#attacking-my-pokemon" data-toggle="tab">My Pokemon</a>
+        </li>
+        <li class=""><a href="#attacking-new-pokemon" data-toggle="tab">New Pokemon</a>
+        </li>
+        <li class=""><a href="#attacking-advanced" data-toggle="tab">Advanced</a>
+        </li>
+      </ul> -->
+
+      <div class="tab-content">
+        <div class="tab-pane fade active in" id="attacking-my-pokemon">
+          <h4>Select your pokemon</h4>
+          <app-basic-dropdown [items]="pokemonsDropdown" [itemTitle]="POKEMON_DROPDOWN_TITLE" (itemSelected)="setPokemon($event)"></app-basic-dropdown>
+          <p class="error-message" *ngIf="!validatePokemon()">A pokemon must be selected</p>
+          <div class="left-div" *ngIf="getImgUrl()">
+            <div class="image-div image-div-small">
+              <img id="attacking_pokemon_img" class="pokemon-img" [src]="getImgUrl()">
+            </div>
+            <label class="title title-casual">{{ simulationPokemon.pokemon.pokemonSpecies.name.toUpperCase() }}</label>
+            <p>HP: {{ simulationPokemon.pokemon.hp }}</p>
+            <p>Attack: {{ simulationPokemon.pokemon.attack }}</p>
+            <p>Defense: {{ simulationPokemon.pokemon.defense }}</p>
+            <p>Special Attack: {{ simulationPokemon.pokemon.spAttack }}</p>
+            <p>Special Defense: {{ simulationPokemon.pokemon.spDefense }}</p>
+            <p>Speed: {{ simulationPokemon.pokemon.speed }}</p>
+            <div *ngIf="isAttacking">
+              <app-basic-dropdown [items]="movesDropdown" [itemTitle]="moveDROPDOWN_TITLE" (itemSelected)="setMove($event)" [clear]="clearMoveDrop"></app-basic-dropdown>
+              <p class="error-message" *ngIf="!validateMove()">A move must be selected</p>
+              <label>Modifier</label><br>
+              <input formControlName="modifier" type="number" class="form-control"/>
+            </div>
+          </div>
+        <!-- <div class="tab-pane fade" id="attacking-new-pokemon">
+          <h4>Profile Tab</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="tab-pane fade" id="attacking-advanced">
+          <h4>Messages Tab</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+</form>

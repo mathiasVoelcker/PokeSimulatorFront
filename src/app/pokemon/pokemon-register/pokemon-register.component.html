@@ -1,0 +1,177 @@
+<form [formGroup]="pokemonForm" (ngSubmit)="savePokemon()">
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span class="title title-casual">#{{ pokemon_species.id }} {{ pokemon_species.name | uppercase }}</span>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <div class="image-div image-div-big">
+              <img class="pokemon-img-large" [src]="getImgUrl(pokemon_species)">
+            </div>
+            <div class="row">
+              <span class="type type-{{ pokemon_species.firstType.name }}">
+                {{ pokemon_species.firstType.name | uppercase }}
+              </span>
+              <span *ngIf="pokemon_species.secondType" class="type type-{{ pokemon_species.secondType.name }}">
+                  {{ pokemon_species.secondType.name | uppercase }}
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 left-div">
+            <h3>Base Stats</h3>
+            <p>Hp: {{ pokemon_species.baseHp }}</p>
+            <p>Attack: {{ pokemon_species.baseAttack }}</p>
+            <p>Defense: {{ pokemon_species.baseDefense }}</p>
+            <p>Special Attack: {{ pokemon_species.baseSpAttack }}</p>
+            <p>Special Defense: {{ pokemon_species.baseSpDefense }}</p>
+            <p>Speed: {{ pokemon_species.baseSpeed }}</p>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="field">
+              <label class="required-field">Level</label>
+              <input formControlName="level" class="form-control" type="number">
+            </div>
+            <div class="field u-margin-top-medium">
+                <app-nature-dropdown [natures]="natures" [selectedItem]="pokemon.nature" [placeholder]="'Select a nature'" (selected)="setNature($event)"></app-nature-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Final Stats</h3>
+            <div class="field">
+              <label>HP: </label>
+              <p id="pokemonHp">{{ pokemon.hp }}</p>
+            </div>
+            <div class="field">
+              <label>Attack:</label>
+              <p id="pokemonAttack">{{ pokemon.attack }}</p>
+            </div>
+            <div class="field">
+              <label>Defense:</label>
+              <p id="pokemonDefense">{{ pokemon.defense }}</p>
+            </div>
+            <div class="field">
+              <label>Special Attack:</label>
+              <p id="pokemonSpAttack">{{ pokemon.spAttack }}</p>
+            </div>
+            <div class="field">
+              <label>Special Defense</label>
+              <p id="pokemonSpDefense">{{ pokemon.spDefense }}</p>
+            </div>
+            <div class="field">
+              <span>Speed</span>
+              <p id="pokemonSpeed">{{ pokemon.speed }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <h3>IVs</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <label class="required-field">IV Attack</label>
+                <input formControlName="ivAttack" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">IV Defense</label>
+                <input formControlName="ivDefense" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">IV Special Attack</label>
+                <input formControlName="ivSpAttack" class="form-control" type="number">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                  <label class="required-field">IV Special Defense</label>
+                <input formControlName="ivSpDefense" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">IV Speed</label>
+                <input formControlName="ivSpeed" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">IV HP</label>
+                <input formControlName="ivHp" class="form-control" type="number">
+              </div>
+            </div>
+            <div class="col-md-6 u-margin-top-medium">
+              <div class="field">
+                <button class="btn btn-success" (click)="SetIvsToMax()" type="button">Set to Max</button>
+                <p class="error-message" *ngIf="!validateIVs()">All IV must be informed and lower than 31</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <h3>EVs</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <label class="required-field">EV Attack</label>
+                <input formControlName="evAttack" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">EV Defense</label>
+                <input formControlName="evDefense" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">EV Special Attack</label>
+                <input formControlName="evSpAttack" class="form-control" type="number">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <label class="required-field">EV Special Defense</label>
+                <input formControlName="evSpDefense" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">EV Speed</label>
+                <input formControlName="evSpeed" class="form-control" type="number">
+              </div>
+              <div class="field">
+                <label class="required-field">EV HP</label>
+                <input formControlName="evHp" class="form-control" type="number">
+              </div>
+            </div>
+            <div class="col-md-6 u-margin-top-medium">
+              <div class="field">
+                <p>EV points left: {{totalEvLeft}}</p>
+                <p class="error-message" *ngIf="!validateEVs()">All EV must be informed and lower than 252</p>
+                <p class="error-message" *ngIf="!validateEVsTotal()">The some of all EV must be lower than 510</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="field">
+              <app-move-dropdown [moves]="moves" [selectedItem]="pokemon.move1" [placeholder]="'Move 1'" (selected)="setMove1($event)"></app-move-dropdown>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+                <app-move-dropdown [moves]="moves" [selectedItem]="pokemon.move2" [placeholder]="'Move 2'" (selected)="setMove2($event)"></app-move-dropdown>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+                <app-move-dropdown [moves]="moves" [selectedItem]="pokemon.move3" [placeholder]="'Move 3'" (selected)="setMove3($event)"></app-move-dropdown>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+                <app-move-dropdown [moves]="moves" [selectedItem]="pokemon.move4" [placeholder]="'Move 4'" (selected)="setMove4($event)"></app-move-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="actions right-div">
+          <button type="submit" class="btn btn-success" [disabled]="!pokemonForm.valid">Create Pokemon</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="flex-column flex-column-align-center">
+    <div class="col-md-6" >
+      <h1>Log in</h1>
+      <div class="col-md-12">
+        <div class="field">
+          <label>Username</label>
+          <input formControlName="username" class="form-control">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="field">
+          <label>Password</label>
+          <input formControlName="password" class="form-control" type="password">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="actions right-div">
+          <button type="submit" class="btn btn-primary">Log in</button>
+          <a class="btn btn-success" href="/sign_up">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,30 @@
+<form [formGroup]="simulationForm" (ngSubmit)="simulateBattle()">
+<div [class]="getCSSClass()">
+  <div class="col-lg-5 col-md-12 col-sm-12 flex-row flex-row-align-strech flex-row-justify-center">
+    <app-simulation-card style="width: 100%;" [simulationForm]="simulationForm" [isAttacking]="true" [title]="ATTACKING_POKEMON" [selectedPokemon]="paramId" (changed)="updateAttackingPokemon($event)"></app-simulation-card>
+  </div>
+
+
+  <div class="col-md-2 flex-row flex-row-align-center flex-row-justify-center">
+    <button style="margin: 15px;" [disabled]="!simulationForm.valid" class="btn btn-danger" id="simulate_battle">
+      Simulate Battle
+    </button>
+  </div>
+
+  <div class="col-lg-5 col-md-12 col-sm-12 flex-row flex-row-align-strech flex-row-justify-center">
+    <app-simulation-card style="width: 100%;" [simulationForm]="simulationForm" [title]="DEFENDING_POKEMON" (changed)="updateDefendingPokemon($event)"></app-simulation-card>
+  </div>
+</div>
+<div *ngIf="!!battleResults" class="flex-row flex-row-align-strech">
+    <div class="col-md-12 col-sm-12 flex-row flex-row-align-strech flex-row-justify-center">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>{{ battleResultsTitle }}</b>
+        </div>
+      <div class="panel-body">
+        <label>{{ battleResults }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

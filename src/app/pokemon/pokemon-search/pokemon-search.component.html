@@ -1,0 +1,45 @@
+<form [formGroup]="pokemonSearchForm" (ngSubmit)="searchPokemons()">
+  <div class="row">
+    <div class="form-group col-md-3">
+        <input formControlName="name" class="form-control" placeholder="Type the name of a pokemon">
+      </div>
+      <div class="form-group col-md-2">
+        <button type="submit" class="btn btn-primary">Find Pokemon</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="pokemonSpecies" class="row">
+  <div class="containter">
+    <ng-container *ngFor="let pokemon of pokemonSpecies;">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <a href="pokemon/{{pokemon.id}}">
+      <div class="panel panel-primary panel-link">
+        <div class="panel-heading">
+          <span>{{ pokemon.name | uppercase }}</span>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-4 col-sm-4 image-div image-div-small">
+            <img class="pokemon-img" [src]="getImgUrl(pokemon)">
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <div class="row">
+              <span class="type type-{{pokemon.firstType.name}}">
+                {{ pokemon.firstType.name | uppercase }}
+              </span>
+              <span *ngIf="pokemon.secondType">
+                <span class="type type-{{pokemon.secondType.name}}">
+                    {{ pokemon.secondType.name | uppercase }}
+                </span>
+              </span>
+            </div>
+            <div class="row panel-content">
+              <span class="panel-content-text">Base stats: {{ getBaseStatTotal(pokemon) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+  </ng-container>
+  </div>
+</div>

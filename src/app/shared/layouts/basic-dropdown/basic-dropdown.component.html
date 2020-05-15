@@ -1,0 +1,6 @@
+<select class="form-control" (change)="setItem($event.target.value)">
+    <option value="0">--Select one {{itemTitle}}--</option>
+    <option *ngFor="let item of items; let i = index" value={{item.id}} [selected]="item.id == selectedItem">
+        {{item.name}}
+    </option>
+</select>

@@ -1,0 +1,42 @@
+<div class="navbar navbar-inverse set-radius-zero" >
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" (click)="toggleClicked()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h1 class="title title-main">POKE SIMULATOR</h1>
+    </div>
+    <!-- <div class="right-div">
+      <a href="#" class="btn btn-danger pull-right">LOG ME OUT</a>
+    </div> -->
+  </div>
+</div>
+<section class="menu-section">
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12">
+        <div [class]="getCSSClass()">
+          <ul id="menu-top" class="nav navbar-nav navbar-right">
+            <li><a href="/" class="menu-top-active">Home</a></li>
+            <li><a href="/search">New Pokemon</a></li>
+            <li><a href="/simulation">Simulate Battle</a></li>
+            <li *ngIf="!isLogged()"><a href="/login">Log in</a></li>
+            <li *ngIf="isLogged()"><a (click)="logout()">Log out</a></li>
+            <!-- <li>
+              <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">UI ELEMENTS <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="ui.html">UI ELEMENTS</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EXAMPLE LINK</a></li>
+              </ul>
+            </li>
+            <li><a href="tab.html">TABS & PANELS</a></li>
+            <li><a href="table.html">TABLES</a></li>
+            <li><a href="blank.html">BLANK PAGE</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
