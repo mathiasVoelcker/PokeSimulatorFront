@@ -33,7 +33,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "bootstrap": "^3.3.7",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-toastr": "^12.0.0",
     "path": "^0.12.7",
     "rxjs": "~6.5.4",
