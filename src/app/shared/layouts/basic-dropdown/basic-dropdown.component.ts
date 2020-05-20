@@ -25,14 +25,12 @@ export class BasicDropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.clear.subscribe(() => { 
-      debugger;
       this.selectedItem = 0
    });
   }
 
 
   setItem(id: string) {
-    debugger;
     this.selectedItem = id;
     this.itemSelected.emit(id);
   }
