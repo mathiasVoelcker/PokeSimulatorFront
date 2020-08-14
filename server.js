@@ -5,12 +5,11 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/pokeSimulatorFront'));
-
-app.get('/*', function(req,res) {
+app.use(express.static("./dist"));
     
-res.sendFile(path.join(__dirname+'/dist/pokeSimulatorFront/index.html'));
-});
+app.get("/*", function(req, res) {
+    res.sendFile("index.html", {root: 'dist/' });
+    });
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
