@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
+  isLoading: boolean = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.isLoading = true;
     let user = new User(
       this.loginForm.get('username').value,
       this.loginForm.get('password').value
@@ -41,7 +44,8 @@ export class LoginComponent implements OnInit {
         this.authService.setToken(res.accessToken);
         this.router.navigateByUrl('/');
       }, err => {
-        this.toastr.error(err.error.message)
+        this.toastr.error(err.error.message);
+        this.isLoading = false;
       })
   }
 

@@ -15,9 +15,15 @@
         </div>
       </div>
       <div class="col-md-12">
-        <div class="actions right-div">
-          <button type="submit" class="btn btn-primary">Log in</button>
-          <a class="btn btn-success" href="/sign_up">Sign Up</a>
+        <div class="row u-margin-top-medium" >
+          <div class="col-md-8"></div>
+          <div class="actions offset-md-4 col-md-4 flex-row flex-row-justify-space-between">
+            <button type="submit" class="btn btn-primary">
+              <span *ngIf="!isLoading">Log in</span>
+              <div *ngIf="isLoading" class="loader"></div>
+            </button>
+            <a class="btn btn-success" href="/sign_up">Sign Up</a>
+          </div>
         </div>
       </div>
     </div>

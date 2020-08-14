@@ -23,7 +23,10 @@
         <p class="error-message" *ngIf="!validatePassword()">Password and Confirm Password are not matching</p>
         <div class="col-md-12">
           <div class="actions right-div">
-            <button type="submit" class="btn btn-primary" [disabled]="!validateForm()">Sign Up</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!validateForm()">
+              <div *ngIf="!isLoading">Sign Up</div>
+              <div *ngIf="isLoading" class="loader"></div>
+            </button>
           </div>
         </div>
       </div>

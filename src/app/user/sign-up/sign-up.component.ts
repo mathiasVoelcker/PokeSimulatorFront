@@ -13,6 +13,7 @@ import { User } from '../entities/user';
 export class SignUpComponent {
 
   signUpForm: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -27,6 +28,7 @@ export class SignUpComponent {
     }
 
   signUp() {
+    this.isLoading = true;
     let user = new User(
       this.signUpForm.get('username').value,
       this.signUpForm.get('password').value
@@ -37,6 +39,7 @@ export class SignUpComponent {
       }, 
       (error) => {
         this.toastr.error(error.error.message)
+        this.isLoading = false;
       }
     );
   }
